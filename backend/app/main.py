@@ -70,9 +70,9 @@ async def add_process_time_header(request: Request, call_next):
 app.include_router(router)
 
 
-@app.get("/", tags=["Root"])
-async def root():
-    """Root entrypoint with service metadata and documentation links."""
+@app.get("/api", tags=["Root"])
+async def api_root():
+    """API metadata and endpoints index."""
     return {
         "name": settings.APP_NAME,
         "version": settings.APP_VERSION,
@@ -87,3 +87,18 @@ async def root():
             "export_pdf": "/api/export/pdf"
         }
     }
+
+
+# Mount built React frontend if dist exists (enables seamless single-URL deployment)
+import os
+from fastapi.staticfiles import StaticFiles
+
+frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist"))
+if os.path.exists(frontend_dist):
+    logger.info("Mounting built frontend static files from %s", frontend_dist)
+    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")
+else:
+    @app.get("/", tags=["Root"])
+    async def root():
+        return await api_root()
+

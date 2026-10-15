@@ -255,6 +255,21 @@ docker compose up --build
 
 ---
 
+### Free Cloud Deployment
+
+#### Option A: 1-Click Unified Full-Stack on Render (Free Tier)
+This repository includes a `render.yaml` blueprint that deploys the entire stack (FastAPI backend + built React frontend) as a single web service with a public URL:
+1. Log into [Render.com](https://render.com) (free account).
+2. Click **New +** > **Blueprint**.
+3. Select this GitHub repository: `https://github.com/pritt18/climate-hazard-trend-analyzer`.
+4. Render automatically detects `render.yaml`, builds the React frontend, sets up Python 3.11, and deploys your live web application at `https://climate-hazard-trend-analyzer.onrender.com`.
+
+#### Option B: Split Frontend on Vercel + Backend on Render
+- **Frontend (Vercel):** Import the GitHub repo into [Vercel](https://vercel.com), select the `frontend` root directory, and set `VITE_API_URL` to your live backend URL.
+- **Backend (Render):** Create a **Web Service** on Render, set Root Directory to `backend`, Build Command: `pip install -r requirements.txt`, Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
+
+---
+
 ### Running the Test Suite
 
 The backend includes a comprehensive automated test suite covering API contracts, climate percentile logic, and the Mann-Kendall implementation:

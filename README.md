@@ -198,7 +198,7 @@ Historical daily reanalysis data is ingested from the **European Centre for Medi
 
 #### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/climate-hazard-trend-analyzer.git
+git clone https://github.com/pritt18/climate-hazard-trend-analyzer.git
 cd climate-hazard-trend-analyzer
 ```
 

@@ -1,19 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
-import { MapPin, Navigation, Compass } from 'lucide-react';
+import { MapPin, Compass } from 'lucide-react';
 
-// Fix Leaflet's default marker icon issue with bundlers
 const customIcon = L.divIcon({
   className: 'custom-map-marker',
   html: `
     <div style="
-      background: #f97316;
+      background: #ea580c;
       width: 28px;
       height: 28px;
       border-radius: 50% 50% 50% 0;
       transform: rotate(-45deg);
       border: 2px solid #ffffff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -37,8 +36,7 @@ export default function MapSelector({
   longitude,
   locationName,
   onSelectCoords,
-  isCollapsed,
-  onToggleCollapse
+  isCollapsed
 }) {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
@@ -48,7 +46,6 @@ export default function MapSelector({
     if (!mapContainerRef.current) return;
 
     if (!mapInstanceRef.current) {
-      // Initialize Leaflet map
       const map = L.map(mapContainerRef.current, {
         center: [latitude, longitude],
         zoom: 4,
@@ -56,18 +53,16 @@ export default function MapSelector({
         attributionControl: false,
       });
 
-      // Sleek dark CartoDB tile layer
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      // Crisp CartoDB Voyager light tile layer
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         maxZoom: 19,
         subdomains: 'abcd',
       }).addTo(map);
 
-      // Attribution small
       L.control.attribution({ position: 'bottomright', prefix: false })
         .addAttribution('&copy; <a href="https://carto.com/" target="_blank">CARTO</a> &copy; <a href="https://osm.org" target="_blank">OSM</a>')
         .addTo(map);
 
-      // Marker
       const marker = L.marker([latitude, longitude], {
         icon: customIcon,
         draggable: true,
@@ -75,13 +70,11 @@ export default function MapSelector({
 
       marker.bindPopup(`<b>${locationName || 'Selected Location'}</b><br/>${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`);
 
-      // Drag event
       marker.on('dragend', (e) => {
         const { lat, lng } = e.target.getLatLng();
         onSelectCoords(parseFloat(lat.toFixed(4)), parseFloat(lng.toFixed(4)));
       });
 
-      // Map click event: moves marker & updates parent coordinates
       map.on('click', (e) => {
         const { lat, lng } = e.latlng;
         marker.setLatLng([lat, lng]);
@@ -101,7 +94,6 @@ export default function MapSelector({
     };
   }, []);
 
-  // Sync map center & marker when coordinates change externally (e.g. from preset or search)
   useEffect(() => {
     if (mapInstanceRef.current && markerRef.current) {
       const currentPos = markerRef.current.getLatLng();
@@ -120,7 +112,6 @@ export default function MapSelector({
     }
   }, [latitude, longitude, locationName]);
 
-  // Handle map resize on layout changes
   useEffect(() => {
     if (mapInstanceRef.current) {
       setTimeout(() => {
@@ -130,26 +121,26 @@ export default function MapSelector({
   }, [isCollapsed]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
-      <div className="px-4 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+    <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+      <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between bg-slate-50/70">
         <div className="flex items-center space-x-2">
-          <Compass className="w-4 h-4 text-orange-400" />
-          <h3 className="text-sm font-semibold text-slate-200 m-0">
+          <Compass className="w-4 h-4 text-orange-600" />
+          <h3 className="text-sm font-semibold text-slate-800 m-0">
             Geospatial Target Map
           </h3>
-          <span className="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
+          <span className="text-[11px] px-2 py-0.5 rounded bg-slate-200/60 text-slate-600 border border-slate-200">
             Click map to pick coordinates
           </span>
         </div>
-        <div className="flex items-center space-x-2 text-xs font-mono text-orange-400 bg-orange-950/40 border border-orange-800/40 px-2.5 py-1 rounded-lg">
+        <div className="flex items-center space-x-1.5 text-xs font-mono font-semibold text-orange-700 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-lg">
           <MapPin className="w-3.5 h-3.5" />
           <span>{latitude.toFixed(2)}°, {longitude.toFixed(2)}°</span>
         </div>
       </div>
 
-      <div className="relative w-full h-[260px] sm:h-[300px] bg-slate-950">
+      <div className="relative w-full h-[260px] sm:h-[300px] bg-slate-100">
         <div ref={mapContainerRef} className="w-full h-full" />
-        <div className="absolute bottom-2 left-2 z-[400] bg-slate-900/90 backdrop-blur-sm border border-slate-700/80 rounded-lg px-2.5 py-1 text-[11px] text-slate-300 pointer-events-none shadow-md">
+        <div className="absolute bottom-2 left-2 z-[400] bg-white/95 backdrop-blur-sm border border-slate-200 rounded-lg px-2.5 py-1 text-[11px] text-slate-700 pointer-events-none shadow-md">
           <span>Lat: <b>{latitude.toFixed(3)}</b> | Lon: <b>{longitude.toFixed(3)}</b></span>
         </div>
       </div>

@@ -25,61 +25,63 @@ export default function HazardConfig({
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-lg space-y-4">
+    <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-200 flex items-center space-x-2 m-0">
-          <Settings2 className="w-4 h-4 text-orange-400" />
+        <h3 className="text-sm font-semibold text-slate-800 flex items-center space-x-2 m-0">
+          <Settings2 className="w-4 h-4 text-orange-600" />
           <span>Hazard & Parameters Configuration</span>
         </h3>
-        <span className="text-xs text-orange-400 font-medium">Default: Heatwave (95th Pctl)</span>
+        <span className="text-xs text-orange-700 font-semibold bg-orange-50 px-2 py-0.5 rounded border border-orange-200">
+          Default: Heatwave (P95)
+        </span>
       </div>
 
       {/* Hazard Type Selector */}
       <div>
-        <label className="block text-xs font-medium text-slate-400 mb-1.5">
+        <label className="block text-xs font-medium text-slate-500 mb-1.5">
           Climate Hazard Type
         </label>
         <div className="grid grid-cols-3 gap-2">
           <button
             type="button"
             onClick={() => setHazardType('heatwave')}
-            className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-lg border text-xs font-medium transition ${
+            className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-lg border text-xs font-semibold transition ${
               hazardType === 'heatwave'
-                ? 'bg-gradient-to-b from-orange-500/20 to-orange-600/30 border-orange-500 text-white shadow-md shadow-orange-500/10'
-                : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                ? 'bg-orange-50/80 border-orange-500 text-orange-950 shadow-sm'
+                : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            <Flame className={`w-4 h-4 mb-1 ${hazardType === 'heatwave' ? 'text-orange-400' : 'text-slate-500'}`} />
+            <Flame className={`w-4 h-4 mb-1 ${hazardType === 'heatwave' ? 'text-orange-600' : 'text-slate-400'}`} />
             <span>Heatwave</span>
-            <span className="text-[10px] text-slate-400">Default (P95, ≥3d)</span>
+            <span className="text-[10px] text-slate-500 font-normal">Default (P95, ≥3d)</span>
           </button>
 
           <button
             type="button"
             onClick={() => setHazardType('drought')}
-            className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-lg border text-xs font-medium transition ${
+            className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-lg border text-xs font-semibold transition ${
               hazardType === 'drought'
-                ? 'bg-gradient-to-b from-amber-500/20 to-amber-600/30 border-amber-500 text-white shadow-md shadow-amber-500/10'
-                : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                ? 'bg-amber-50/80 border-amber-500 text-amber-950 shadow-sm'
+                : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            <Sun className={`w-4 h-4 mb-1 ${hazardType === 'drought' ? 'text-amber-400' : 'text-slate-500'}`} />
+            <Sun className={`w-4 h-4 mb-1 ${hazardType === 'drought' ? 'text-amber-600' : 'text-slate-400'}`} />
             <span>Dry Spells</span>
-            <span className="text-[10px] text-slate-400">Drought (≥14d)</span>
+            <span className="text-[10px] text-slate-500 font-normal">Drought (≥14d)</span>
           </button>
 
           <button
             type="button"
             onClick={() => setHazardType('heavy_rainfall')}
-            className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-lg border text-xs font-medium transition ${
+            className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-lg border text-xs font-semibold transition ${
               hazardType === 'heavy_rainfall'
-                ? 'bg-gradient-to-b from-blue-500/20 to-blue-600/30 border-blue-500 text-white shadow-md shadow-blue-500/10'
-                : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                ? 'bg-blue-50/80 border-blue-500 text-blue-950 shadow-sm'
+                : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            <CloudRain className={`w-4 h-4 mb-1 ${hazardType === 'heavy_rainfall' ? 'text-blue-400' : 'text-slate-500'}`} />
+            <CloudRain className={`w-4 h-4 mb-1 ${hazardType === 'heavy_rainfall' ? 'text-blue-600' : 'text-slate-400'}`} />
             <span>Heavy Rain</span>
-            <span className="text-[10px] text-slate-400">Extreme P95</span>
+            <span className="text-[10px] text-slate-500 font-normal">Extreme P95</span>
           </button>
         </div>
       </div>
@@ -87,7 +89,7 @@ export default function HazardConfig({
       {/* Time Range Selector */}
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <label className="text-xs font-medium text-slate-400 flex items-center space-x-1.5">
+          <label className="text-xs font-medium text-slate-500 flex items-center space-x-1.5">
             <Calendar className="w-3.5 h-3.5" />
             <span>Time Range: {startYear} – {endYear} ({endYear - startYear + 1} Years)</span>
           </label>
@@ -95,21 +97,21 @@ export default function HazardConfig({
             <button
               type="button"
               onClick={() => handlePresetYears(1990, 2023)}
-              className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300"
+              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium"
             >
               1990–2023
             </button>
             <button
               type="button"
               onClick={() => handlePresetYears(1990, 2020)}
-              className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300"
+              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium"
             >
               1990–2020
             </button>
             <button
               type="button"
               onClick={() => handlePresetYears(1980, 2023)}
-              className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300"
+              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium"
             >
               1980–2023
             </button>
@@ -118,38 +120,38 @@ export default function HazardConfig({
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <span className="text-[10px] text-slate-500 block mb-0.5">Start Year</span>
+            <span className="text-[10px] text-slate-400 block mb-0.5">Start Year</span>
             <input
               type="number"
               min="1940"
               max={endYear - 4}
               value={startYear}
               onChange={(e) => setStartYear(parseInt(e.target.value) || 1990)}
-              className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700/80 text-xs font-mono text-slate-100 focus:outline-none focus:border-orange-500"
+              className="w-full px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-mono text-slate-800 focus:bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
             />
           </div>
           <div>
-            <span className="text-[10px] text-slate-500 block mb-0.5">End Year</span>
+            <span className="text-[10px] text-slate-400 block mb-0.5">End Year</span>
             <input
               type="number"
               min={startYear + 4}
               max="2024"
               value={endYear}
               onChange={(e) => setEndYear(parseInt(e.target.value) || currentYear)}
-              className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700/80 text-xs font-mono text-slate-100 focus:outline-none focus:border-orange-500"
+              className="w-full px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-mono text-slate-800 focus:bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
             />
           </div>
         </div>
       </div>
 
       {/* Percentile Threshold & Consecutive Days */}
-      <div className="grid grid-cols-2 gap-3 pt-1 border-t border-slate-800">
+      <div className="grid grid-cols-2 gap-3 pt-2 border-t border-slate-100">
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label className="text-[11px] font-medium text-slate-400">
+            <label className="text-[11px] font-medium text-slate-500">
               Percentile Threshold
             </label>
-            <span className="text-xs font-mono font-semibold text-orange-400">{percentile}th</span>
+            <span className="text-xs font-mono font-bold text-orange-600">{percentile}th</span>
           </div>
           <input
             type="range"
@@ -160,7 +162,7 @@ export default function HazardConfig({
             onChange={(e) => setPercentile(parseFloat(e.target.value))}
             className="w-full accent-orange-500 cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] text-slate-500">
+          <div className="flex justify-between text-[10px] text-slate-400 font-medium">
             <span>80%</span>
             <span>95% (WMO)</span>
             <span>99%</span>
@@ -168,7 +170,7 @@ export default function HazardConfig({
         </div>
 
         <div>
-          <label className="block text-[11px] font-medium text-slate-400 mb-1">
+          <label className="block text-[11px] font-medium text-slate-500 mb-1">
             Min Duration (Days)
           </label>
           <input
@@ -177,26 +179,26 @@ export default function HazardConfig({
             max="15"
             value={minDays}
             onChange={(e) => setMinDays(parseInt(e.target.value) || 3)}
-            className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700/80 text-xs font-mono text-slate-100 focus:outline-none focus:border-orange-500"
+            className="w-full px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-mono text-slate-800 focus:bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
           />
-          <span className="text-[10px] text-slate-500">WMO Standard: ≥3 days</span>
+          <span className="text-[10px] text-slate-400">WMO Standard: ≥3 days</span>
         </div>
       </div>
 
       {/* Units Toggle */}
-      <div className="flex items-center justify-between pt-1 border-t border-slate-800 text-xs">
-        <span className="text-slate-400 flex items-center space-x-1.5">
+      <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+        <span className="text-slate-600 flex items-center space-x-1.5 font-medium">
           <Thermometer className="w-3.5 h-3.5" />
           <span>Temperature Scale:</span>
         </span>
-        <div className="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800">
+        <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200">
           <button
             type="button"
             onClick={() => setUnits('celsius')}
-            className={`px-3 py-1 rounded text-xs font-medium transition ${
+            className={`px-3 py-1 rounded text-xs font-semibold transition ${
               units === 'celsius'
-                ? 'bg-orange-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-white text-orange-600 shadow-sm'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             Celsius (°C)
@@ -204,10 +206,10 @@ export default function HazardConfig({
           <button
             type="button"
             onClick={() => setUnits('fahrenheit')}
-            className={`px-3 py-1 rounded text-xs font-medium transition ${
+            className={`px-3 py-1 rounded text-xs font-semibold transition ${
               units === 'fahrenheit'
-                ? 'bg-orange-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-white text-orange-600 shadow-sm'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             Fahrenheit (°F)
@@ -220,11 +222,11 @@ export default function HazardConfig({
         type="button"
         onClick={onRunAnalysis}
         disabled={isLoading}
-        className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-semibold text-sm shadow-lg shadow-orange-600/25 flex items-center justify-center space-x-2 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold text-sm shadow-md shadow-orange-500/20 flex items-center justify-center space-x-2 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
       >
         {isLoading ? (
           <>
-            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
             <span>Processing ERA5 Climatology...</span>
           </>
         ) : (

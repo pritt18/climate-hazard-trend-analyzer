@@ -154,7 +154,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       {/* Top Navbar */}
       <Navbar
         health={health}
@@ -253,16 +253,16 @@ export default function App() {
 
             {/* Loading Indicator */}
             {isLoading && (
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center shadow-xl space-y-4">
+              <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-sm space-y-4">
                 <div className="relative w-16 h-16 mx-auto">
                   <div className="absolute inset-0 rounded-full border-4 border-orange-500/20 animate-ping" />
                   <div className="relative w-16 h-16 rounded-full border-4 border-orange-500 border-t-transparent animate-spin" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white m-0">
+                  <h3 className="text-base font-bold text-slate-900 m-0">
                     Ingesting & Analyzing ERA5 Climate Series...
                   </h3>
-                  <p className="text-xs text-slate-400 mt-1 max-w-md mx-auto">
+                  <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
                     Computing 95th percentile baseline climatology, consecutive heat clusters, linear regression slopes, and Mann-Kendall monotonic test statistics.
                   </p>
                 </div>
@@ -297,18 +297,18 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950 py-6 mt-12 text-center text-xs text-slate-500">
+      <footer className="border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center space-x-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span>Climate Hazard Trend Analyzer • ERA5 Reanalysis • Open-Meteo API</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="font-medium text-slate-700">Climate Hazard Trend Analyzer • ERA5 Reanalysis • Open-Meteo API</span>
           </div>
-          <div className="text-slate-400 flex items-center space-x-4">
-            <span>WMO ETCCDI Heatwave Standard</span>
+          <div className="text-slate-500 flex items-center space-x-4">
+            <span>WMO ETCCDI Standard</span>
             <span>•</span>
             <span>Mann-Kendall & Sen's Slope</span>
             <span>•</span>
-            <span>MongoDB Dual-Tier Cache</span>
+            <span>Dual-Tier NoSQL Cache</span>
           </div>
         </div>
       </footer>

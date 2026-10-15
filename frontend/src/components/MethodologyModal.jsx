@@ -1,41 +1,41 @@
 import React from 'react';
-import { X, BookOpen, CheckCircle, Scale, Database, Flame, Info } from 'lucide-react';
+import { X, BookOpen, Scale, Database, Flame, Info } from 'lucide-react';
 
 export default function MethodologyModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
-      <div className="relative w-full max-w-3xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+      <div className="relative w-full max-w-3xl bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-4">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400">
+            <div className="p-2 rounded-xl bg-orange-100 text-orange-600">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white m-0">
+              <h2 className="text-lg font-bold text-slate-900 m-0">
                 Climatological Methodology & Scientific Framework
               </h2>
-              <p className="text-xs text-slate-400 m-0">
+              <p className="text-xs text-slate-500 m-0">
                 WMO standards, non-parametric trend detection, and ERA5 data handling
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content Sections */}
-        <div className="space-y-5 text-xs text-slate-300 leading-relaxed">
+        <div className="space-y-4 text-xs text-slate-700 leading-relaxed">
           {/* Section 1: Heatwave Definition */}
-          <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-2">
-            <h3 className="text-sm font-semibold text-orange-400 flex items-center space-x-1.5 m-0">
-              <Flame className="w-4 h-4" />
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+            <h3 className="text-sm font-bold text-orange-700 flex items-center space-x-1.5 m-0">
+              <Flame className="w-4 h-4 text-orange-600" />
               <span>1. Percentile-Based Heatwave Detection (WMO/IPCC Standard)</span>
             </h3>
             <p>
@@ -45,7 +45,7 @@ export default function MethodologyModal({ isOpen, onClose }) {
             <p>
               This platform adheres to the <b>World Meteorological Organization (WMO)</b> and <b>IPCC Expert Team on Climate Change Detection and Indices (ETCCDI)</b> guidelines:
             </p>
-            <ul className="list-disc pl-5 space-y-1 text-slate-400">
+            <ul className="list-disc pl-5 space-y-1 text-slate-600">
               <li>
                 <b>Threshold (P95):</b> The 95th percentile of daily maximum 2-meter air temperature (Tmax) computed across the historical baseline climatology.
               </li>
@@ -59,9 +59,9 @@ export default function MethodologyModal({ isOpen, onClose }) {
           </div>
 
           {/* Section 2: Statistical Rigor (Mann-Kendall & Sen's Slope) */}
-          <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-2">
-            <h3 className="text-sm font-semibold text-orange-400 flex items-center space-x-1.5 m-0">
-              <Scale className="w-4 h-4" />
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+            <h3 className="text-sm font-bold text-orange-700 flex items-center space-x-1.5 m-0">
+              <Scale className="w-4 h-4 text-orange-600" />
               <span>2. Statistical Trend Rigor: Mann-Kendall & Sen's Slope</span>
             </h3>
             <p>
@@ -71,7 +71,7 @@ export default function MethodologyModal({ isOpen, onClose }) {
             <p>
               We implement the non-parametric <b>Mann-Kendall Monotonic Trend Test</b> and <b>Sen's Slope Estimator</b>:
             </p>
-            <ul className="list-disc pl-5 space-y-1 text-slate-400">
+            <ul className="list-disc pl-5 space-y-1 text-slate-600">
               <li>
                 <b>S-Statistic:</b> Counts pairwise directional concordance S = &Sigma; sgn(x_j - x_k) with variance tie corrections.
               </li>
@@ -85,12 +85,12 @@ export default function MethodologyModal({ isOpen, onClose }) {
           </div>
 
           {/* Section 3: Data Ingestion & Caching Architecture */}
-          <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-2">
-            <h3 className="text-sm font-semibold text-orange-400 flex items-center space-x-1.5 m-0">
-              <Database className="w-4 h-4" />
+          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+            <h3 className="text-sm font-bold text-orange-700 flex items-center space-x-1.5 m-0">
+              <Database className="w-4 h-4 text-orange-600" />
               <span>3. Data Ingestion, Cleaning & NoSQL Caching</span>
             </h3>
-            <ul className="list-disc pl-5 space-y-1 text-slate-400">
+            <ul className="list-disc pl-5 space-y-1 text-slate-600">
               <li>
                 <b>Data Source:</b> European Centre for Medium-Range Weather Forecasts (ECMWF) <b>ERA5 Atmospheric Reanalysis</b> via the Open-Meteo Historical Archive API (0.25° spatial grid, 1940–present).
               </li>
@@ -104,8 +104,8 @@ export default function MethodologyModal({ isOpen, onClose }) {
           </div>
 
           {/* Section 4: Assumptions & Scope */}
-          <div className="p-3 bg-orange-950/20 border border-orange-500/20 rounded-xl space-y-1 text-slate-400">
-            <div className="flex items-center space-x-1 text-orange-300 font-semibold">
+          <div className="p-3 bg-orange-50 border border-orange-200 rounded-xl space-y-1 text-slate-700">
+            <div className="flex items-center space-x-1 text-orange-800 font-bold">
               <Info className="w-3.5 h-3.5" />
               <span>Assumptions & Caveats</span>
             </div>
@@ -116,10 +116,10 @@ export default function MethodologyModal({ isOpen, onClose }) {
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end border-t border-slate-800 pt-4">
+        <div className="flex justify-end border-t border-slate-100 pt-4">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-medium text-xs transition"
+            className="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs transition"
           >
             Close Scientific Overview
           </button>
